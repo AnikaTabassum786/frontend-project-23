@@ -1,5 +1,5 @@
 import React, { use } from 'react';
-import { NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../../contexts/AuthContext';
 
 const Navbar = () => {
@@ -7,8 +7,8 @@ const Navbar = () => {
     // const userInfo = use(AuthContext)
     // console.log('From Navbar',userInfo)
 
-    const userInfo = use(AuthContext)
-    console.log(userInfo)
+    const {user} = use(AuthContext)
+    console.log(user)
 
     const links = <>
         <li><NavLink to={'/'} className={({ isActive }) =>
@@ -46,7 +46,7 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Button</a>
+                {user? <button className='btn'>Sign out</button>: <Link to={'/login'}>Login</Link>}
             </div>
         </div>
     );
