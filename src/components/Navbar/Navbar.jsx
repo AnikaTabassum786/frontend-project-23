@@ -4,8 +4,11 @@ import { AuthContext } from '../../contexts/AuthContext';
 
 const Navbar = () => {
     
+    // const userInfo = use(AuthContext)
+    // console.log('From Navbar',userInfo)
+
     const userInfo = use(AuthContext)
-    console.log('From Navbar',userInfo)
+    console.log(userInfo)
 
     const links = <>
         <li><NavLink to={'/'} className={({ isActive }) =>
