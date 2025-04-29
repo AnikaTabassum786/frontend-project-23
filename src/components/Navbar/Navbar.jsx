@@ -22,15 +22,22 @@ const Navbar = () => {
     }
 
     const links = <>
+
         <li><NavLink to={'/'} className={({ isActive }) =>
             isActive ? "active font-semibold underline" : ""
         }>Home</NavLink></li>
+
         <li><NavLink to={'/login'} className={({ isActive }) =>
             isActive ? "active font-semibold underline" : ""
         }>Login</NavLink></li>
+
         <li><NavLink to={'/register'} className={({ isActive }) =>
             isActive ? "active font-semibold underline" : ""
         }>Register</NavLink></li>
+
+        <li><NavLink to={'/dashboard'} className={({ isActive }) =>
+            isActive ? "active font-semibold underline" : ""
+        }>Dashboard</NavLink></li>
 
         {
             user &&
