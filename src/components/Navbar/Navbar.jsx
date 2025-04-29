@@ -7,8 +7,19 @@ const Navbar = () => {
     // const userInfo = use(AuthContext)
     // console.log('From Navbar',userInfo)
 
-    const {user} = use(AuthContext)
+    const {user,signOutUser} = use(AuthContext)
     console.log(user)
+
+    const handleSignOut=()=>{
+        signOutUser()
+        .then(()=>{
+            console.log('Sign Out')
+        })
+        .catch(error =>{
+            console.log(error)
+        })
+
+    }
 
     const links = <>
         <li><NavLink to={'/'} className={({ isActive }) =>
@@ -20,6 +31,21 @@ const Navbar = () => {
         <li><NavLink to={'/register'} className={({ isActive }) =>
             isActive ? "active font-semibold underline" : ""
         }>Register</NavLink></li>
+
+        {
+            user &&
+             <>
+             <li><NavLink to={'/order'} className={({ isActive }) =>
+                isActive ? "active font-semibold underline" : ""
+            }>Order</NavLink></li>
+
+            <li><NavLink to={'/profile'} className={({ isActive }) =>
+                isActive ? "active font-semibold underline" : ""
+            }>Profile</NavLink></li>
+             </>
+
+            
+        }
     </>
     return (
         <div className="navbar bg-base-100 shadow-sm">
@@ -46,7 +72,13 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                {user? <button className='btn'>Sign out</button>: <Link to={'/login'}>Login</Link>}
+                {user? 
+                 <>
+                 <p className='mr-2'>{user.email}</p>
+                 <button onClick={handleSignOut} className='btn'>Sign out</button>
+                 </>
+                :
+                <Link to={'/login'}>Login</Link>}
             </div>
         </div>
     );
